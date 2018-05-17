@@ -38,14 +38,24 @@ namespace DtmfDetection
 			HighPureTones.Add(highTone);
 		}
 
-		public static void AddLowTone(int lowTone)
+		public static bool TryAddLowTone(int lowTone)
 		{
+			if (LowPureTones.Contains(lowTone) || HighPureTones.Contains(lowTone))
+				return false;
+
 			LowPureTones.Add(lowTone);
+
+			return true;
 		}
 
-		public static void AddHighTone(int highTone)
+		public static bool TryAddHighTone(int highTone)
 		{
+			if (LowPureTones.Contains(highTone) || HighPureTones.Contains(highTone))
+				return false;
+
 			HighPureTones.Add(highTone);
+
+			return true;
 		}
 
 		public static bool OnlyHighTones()
